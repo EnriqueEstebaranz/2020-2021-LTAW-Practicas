@@ -23,7 +23,7 @@ console.log("Test: " + objeto1.test);
 console.log("")
 console.log("Nombre: " + objeto1["nombre"]);
 console.log("Valor: " + objeto1["valor"]);
-console.log("Valor: " + objeto1["test"])
+console.log("Test: " + objeto1["test"])
 
 //-- Comprobar si un objeto tiene una propiedad
 if("test" in objeto1) {
@@ -54,3 +54,6 @@ console.log("Valor: " + valor);
 //-- Este código es la forma abreviada de este otro:
 //-- const valor = objeto1.valor;
 //-- const nombre = objeto1.nombre
+console.log(objeto1)
+console.log(valor)
+console.log(nombre)
