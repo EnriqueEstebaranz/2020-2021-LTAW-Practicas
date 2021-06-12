@@ -1,17 +1,17 @@
 .frase {
-    text-align  :       center;
-    color       :     yellow;
-    font-size   :         20px;
-    padding     :         10px;
-    line-height :         10px;
+    text-align  :             center;
+    color       :rgb(218, 218, 56);
+    font-size   :               20px;
+    padding     :               20px;
+    line-height :               10px;
 }
 
 .titulo{
-    text-align  :       center;
-    color       :     yellow;
-    font-size   :         50px;
-    padding     :         10px;
-    line-height :         10px;
+    text-align  :             center;
+    color       :rgb(218, 218, 56);
+    font-size   :               70px;
+    padding     :               20px;
+    line-height :               10px;
 }
 
 body {
@@ -22,41 +22,52 @@ body {
 }
 
 
-
-body {
-  background-color:#34495e;
-}
-
-.field {
+.barratareas {
   display:flex;
   position:realtive;
-  margin:5em auto;
-  width:70%;
-  flex-direction:row;
-  border: rgb(218, 218, 56) 10px solid;
+  margin: auto;
+  background-color:rgb(218, 218, 56);
 
 }
 
-.field>input[type=text],
-.field>button {
-  display:block;
-  font:1.2em 'Montserrat Alternates';
-}
-
-.field>input[type=text] {
-  flex:1;
-  padding:0.6em;
-  border: black 5px solid;
-}
-.barra {
-    border: black 5px solid;
-    background-color:yellow;
+.tareas {
+    border-right: black 5px solid;
+    background-color:rgb(218, 218, 56);
     color:black;
+    font-size   :         25px;
 }
-.buscar {
-    border: red 5px solid;
-    padding:5px;
-    background-color:yellow;
-    color:black;
 
+.tituloproducto {
+    font-size   :               30px;
+    color:black;
+    height: 50px;
+    width: 500px;
+    background-color: rgb(218, 218, 56);
+    text-align: center;
+    vertical-align: middle;
+}
+
+.imagenproducto{
+    height: 300px;
+    width: 500px;
+    max-width:100%;
+
+
+}
+.productos1{
+    padding: 10px;
+}
+.productos2{
+
+    padding: 10px;
+  
+}
+.productos{
+
+    display: flex;
+    position: absolute ;
+    top: 200px;
+    right: 50px;
+    left: 50px;
+    justify-content: space-between;
 }
