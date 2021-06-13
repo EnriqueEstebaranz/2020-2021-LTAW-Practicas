@@ -1,7 +1,7 @@
 .titulo{
     position: absolute;
     text-align  :             center;
-    color       :            black;
+    color       :            rgb(218, 218, 56);
     font-size   :               70px;
     right: 50%;
     transform: translate(+50%);
@@ -11,18 +11,11 @@
     text-align  :             center;
     color       :rgb(218, 218, 56);
     font-size   :               20px;
-
     line-height :               10px;
-}
-.barratareas {
-    position: absolute;
-    top: 130px;
-    width: 100%;
-    background-color:rgb(218, 218, 56);
 }
 
 body {
-    background-color: seashell;
+    background-color: black;
     background-size: cover;
     background-attachment: fixed;
 }
@@ -62,12 +55,52 @@ body {
     background-color: yellow;
 }
 /*Final boton dropdown, sacado de la pagina w3schools*/
-
+.infoextra {
+    position: relative;
+    display: inline-block;
+    background-color:rgb(218, 218, 56);
+    color:black;
+    width: 300px;
+}
+  .infoextra .tooltiptext {
+    visibility: hidden;
+    width: 300px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+  
+  .infoextra .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+  
+  .infoextra:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
 .barratareas {
-  display:flex;
-  position:realtive;
-  margin: auto;
-  background-color:rgb(218, 218, 56);
+    display:flex;
+    position: absolute;
+    top: 130px;
+    width: 100%;
+
+    background-color:rgb(218, 218, 56);
 }
 .tareas {
     border: black 1px solid;
@@ -77,6 +110,13 @@ body {
     text-align: center;
     vertical-align: middle;
 }
+.guia{
+    font-size: 35px;
+    margin:auto;
+    text-align: center;
+    vertical-align: middle; 
+}
+
 .tareas:hover {
     background-color: yellow;
   }
@@ -84,10 +124,10 @@ body {
 .conjuntoproductos{
     display: flex;
     position: absolute ;
-    background-image: url("https://raw.githubusercontent.com/EnriqueEstebaranz/2020-2021-LTAW-Practicas/main/P1/imagenes/fondoSW.png");
+    background-color: yellow;
     height: 100%;
     width: 1000px;
-    top: 200px;
+    top: 220px;
     right: 50%;
     transform: translate(+50%);
 }
@@ -108,7 +148,7 @@ body {
 .productosf1{
     display: flex;
     position: absolute ;
-    top: 50px;
+    top: 90px;
     right: 50%;
     transform: translate(+50%);
 
@@ -130,14 +170,12 @@ body {
 .productosf2{
     display: flex;
     position: absolute ;
-    top: 220px;
+    top: 350px;
     margin-left: auto;
     margin-right: auto;
     right: 50%;
     transform: translate(+50%);
 }
-
-
 .imagenproducto{
     width:300px;
     height:200px;

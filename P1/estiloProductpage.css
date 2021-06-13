@@ -1,0 +1,60 @@
+.productocompra{
+    position: absolute;
+    top: 220px;
+    border: yellow 2px solid;
+    color: blanchedalmond;
+    height: 100%;
+    width: 1000px;
+    right: 50%;
+    transform: translate(+50%);
+}
+.imagenproductocompra{
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    border: yellow 1px solid;
+    width:300px;
+    height:200px;
+}
+.infoproducto{
+    position: absolute;
+}
+.compra{
+    position: absolute;
+    top: 40px;
+    padding: 10px;
+    font-size: 20px;
+    text-align: justify;
+    color: yellow;
+    right: 40px;
+    width: 290px;
+    height: 500px;
+    border: yellow 1px solid;
+}
+.compra>p{
+    color: gold;
+    text-align: center;
+    font-size: 30px;
+}
+.cesta{
+    position: absolute;
+    top: 290px;
+    font-size :30px;
+    color:black;
+    height: 40px;
+    width: 290px;
+    background-color: rgb(218, 218, 56);
+    text-align: center;
+    vertical-align: middle;
+}
+.compraya{
+    position: absolute;
+    top: 340px;
+    font-size :30px;
+    color:black;
+    height: 40px;
+    width: 290px;
+    background-color: rgb(218, 218, 56);
+    text-align: center;
+    vertical-align: middle;
+}
