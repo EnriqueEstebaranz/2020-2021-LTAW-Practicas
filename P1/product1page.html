@@ -1,26 +1,63 @@
 <html lang="es" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <title>Naves</title>
+    <title>Halcón Milenario | Navetea</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="estilo.css">
-    <link rel="icon" type="image/png" href="iconoSW.png" />
+    <link rel="stylesheet" type="text/css" href="estiloProductpage.css">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/EnriqueEstebaranz/2020-2021-LTAW-Practicas/main/P1/imagenes/halconMilenario.jpg" />
+    <script  src ="productopage.js" defer></script>
 </head>
 <body>
  
     <div class="titulo">
-        <b>Producto1</b>
+        <b>NAVETEA</b>
         <p class="frase">Elige entre nuestra gran variedad de naves</p>
     </div>
     <div class="barratareas" id="searchform">
- 
+        <div class="dropdown">
+            <button class="dropbtn"><i class="fa fa-list"></i></button>
+            <div class="dropdown-content">
+                <a href="product1page.html">Hálcon Milenario</a>
+                <a href="product2page.html">X-Wing</a>
+                <a href="product3page.html">ETA-2</a>
+                <a href="product4page.html">Caza estelar N-1</a>
+                <a href="product5page.html">Slave1</a>
+                <a href="product6page.html">Tantive-IV</a>
+            </div>
+        </div>
         <a class = "tareas" href="errorpage.html" ><i class="fa fa-search"></i>Buscar</a>
         <a class = "tareas" href="homepage.html" ><i class="fa fa-home"></i>Home</a>
-        <a class = "tareas" href="homepage.html" ><i class="fa fa-refresh"></i>Refresh</a>
-      </div>
-    <div>
-        
+        <a class = "tareas" href="product1page.html" ><i class="fa fa-refresh"></i>Refresh</a>
     </div>
+    <div class="productocompra">
+        <img class ="imagenproductocompra" src="https://raw.githubusercontent.com/EnriqueEstebaranz/2020-2021-LTAW-Practicas/main/P1/imagenes/halconMilenario.jpg" alt="Halcón Milenario">
+        <div class="infoproducto">
+            Halcón Milenario:
+            <br>
+            Originalmente conocido como YT-1300 es un carguero ligero corelliano.
+            Que no os engañe su apariencia envejecida, esta nave ha sufrido multitud de 
+            modificaciones, tiene un motor hiperimpulsor de los más rapidos en toda 
+            la galaxia.
+            <br>
+            Para aumentar a un mas sus prestaciones la nave dispone de algunos cañones lasers.
+            Es necesaria una tripulación de al menos dos individuos(piloto y copilot).
+        </div>
+        <div class="compra">
+            <p>40M créditos galácticos </p>
+            Entrega GRATIS: miercoles, 29 de octubre del 2023.
+            <br>
+            Entrega más rápida: jueves, 17 de mayo del 2022.
+            <br>
+            <br>
+            En stock:
+            <h1 id ="stock"></h1>
+            <a class = "cesta" href="errorpage.html" >Añadir a la cesta:</a>
+            <a class = "compraya" href="errorpage.html" >Comprar ya</a>
+            
+        </div>
+    </div>
+    
     
     
 </body>
