@@ -18,7 +18,7 @@ const server = http.createServer((req, res)=>{
     //-- Valores de la respuesta por defecto
     let code = 200;
     let code_msg = "OK";
-    let page = pagina_main;
+    let page = fs.readFileSync("homepage.html");
 
     //-- Analizar el recurso
     //-- Construir el objeto url con la url de la solicitud
@@ -41,6 +41,9 @@ const server = http.createServer((req, res)=>{
     res.write(page);
     res.end();
 });
+console.log("Lectura asíncrona de un fichero");
+
+
 
 server.listen(PUERTO);
 
