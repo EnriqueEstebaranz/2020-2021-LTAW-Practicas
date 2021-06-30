@@ -1,9 +1,16 @@
 //--  Accedemos a todos los elementos del módulo http.
 const http = require('http');
+//-- utilizamos el módulo fs
+const fs = require('fs');
+//-- Utilizamos el modulo url
+const url = require('url')
 
 //-- El servidor debe escuchar en el puerto 9000(especificación de 
 //-- la practica).
 const PUERTO = 9000;
+
+console.log("Servidor iniciado:")
+
 
 const server = http.createServer((req, res)=>{
     console.log("Petición recibida!");
@@ -37,4 +44,4 @@ const server = http.createServer((req, res)=>{
 
 server.listen(PUERTO);
 
-console.log("Ejemplo 7. Escuchando en puerto: " + PUERTO);
+console.log("Server encendido, escuchando en puerto: " + PUERTO);
