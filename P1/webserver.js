@@ -4,13 +4,15 @@ const http = require('http');
 const fs = require('fs');
 //-- Utilizamos el modulo url
 const url = require('url')
-
+//-- Importamos el modulo path con el objetivo de usar la funcion 
+var path = require('path')
 //-- El servidor debe escuchar en el puerto 9000(especificación de 
 //-- la practica).
-const PUERTO = 9000;
+const PUERTO = 9200;
 
 console.log("Servidor iniciado:")
-
+console.log("path",path)
+console.log(path.extname("errorpage.html"))
 
 const server = http.createServer((req, res)=>{
     console.log("Petición recibida!");
@@ -23,14 +25,16 @@ const server = http.createServer((req, res)=>{
     //-- Analizar el recurso
     //-- Construir el objeto url con la url de la solicitud
     const url = new URL(req.url, 'http://' + req.headers['host']);
-    console.log(url.pathname);
+    console.log("hola",url.pathname);
 
+    var contentType = contentTypesExtensions[url.pathname.extname]
+    console.log("contentType",contentType)
     //-- Cualquier recurso que no sea la página principal
     //-- genera un error
     if (url.pathname != '/') {
         code = 404;
         code_msg = "Not Found";
-        page = pagina_error;
+        page = fs.readFileSync("errorpage.html");;
     }
 
     //-- Generar la respusta en función de las variables
@@ -47,4 +51,5 @@ console.log("Lectura asíncrona de un fichero");
 
 server.listen(PUERTO);
 
-console.log("Server encendido, escuchando en puerto: " + PUERTO);
+console.log("Static file server running at\n  => http://localhost:" 
+            + PUERTO + "/\nCTRL + C to shutdown");
