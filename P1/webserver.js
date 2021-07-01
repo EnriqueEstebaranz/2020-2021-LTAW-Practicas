@@ -27,6 +27,13 @@ const server = http.createServer((req, res)=>{
     const url = new URL(req.url, 'http://' + req.headers['host']);
     console.log("hola",url.pathname);
 
+    var contentTypesExtensions ={
+        ".html": "text/html",
+        ".css": "text/css",
+        ".js" : "text/javascript"
+    };
+    
+ 
     var contentType = contentTypesExtensions[url.pathname.extname]
     console.log("contentType",contentType)
     //-- Cualquier recurso que no sea la página principal
