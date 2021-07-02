@@ -10,53 +10,79 @@ var path = require('path')
 //-- la practica).
 const PUERTO = 9200;
 
+
 console.log("Servidor iniciado:")
-console.log("path",path)
-console.log(path.extname("errorpage.html"))
 
-const server = http.createServer((req, res)=>{
+const server = http.createServer(function(req, res){
+    //-- Petición
     console.log("Petición recibida!");
-
-    //-- Valores de la respuesta por defecto
-    let code = 200;
-    let code_msg = "OK";
-    let page = fs.readFileSync("homepage.html");
 
     //-- Analizar el recurso
     //-- Construir el objeto url con la url de la solicitud
     const url = new URL(req.url, 'http://' + req.headers['host']);
-    console.log("hola",url.pathname);
+    console.log("Esto es url:",url);
 
-    var contentTypesExtensions ={
+    //-- Valores de la respuesta por defecto
+    let code = 200;
+    let code_msg = "OK";
+
+    let file = "";
+    //-- File obtiene el archivo, (está mal no maneja la opción de que url.pathname
+    //-- sea algo mal escrito sin extensión)
+    if(path.extname(url.pathname) == ''){
+        file += "homepage.html"; 
+    }else{
+        file +=  url.pathname.substr(1);
+        //-- Le quitamos '/' porque el nombre de nuestro archivo no tiene '/'.
+    }
+    console.log("File está así:",file);
+
+    const contentTypesExtensions = {
         ".html": "text/html",
         ".css": "text/css",
-        ".js" : "text/javascript"
+        ".js" : "text/javascript",
+        ".ico" : "image/x-icon"
     };
-    
- 
-    var contentType = contentTypesExtensions[url.pathname.extname]
+
+    var contentType = contentTypesExtensions[path.extname(file)]
     console.log("contentType",contentType)
+    console.log("filee",file)
+
     //-- Cualquier recurso que no sea la página principal
     //-- genera un error
-    if (url.pathname != '/') {
-        code = 404;
-        code_msg = "Not Found";
-        page = fs.readFileSync("errorpage.html");;
-    }
 
-    //-- Generar la respusta en función de las variables
-    //-- code, code_msg y page
-    res.statusCode = code;
-    res.statusMessage = code_msg;
-    res.setHeader('Content-Type','text/html');
-    res.write(page);
-    res.end();
+
+    fs.readFile(file, function(err, data) {
+    
+        if (err) { 
+            code = 404;
+            code_msg = "Not Found";
+            data =fs.readFileSync("errorpage.html")
+            console.log("Error!!")
+            res.statusCode = code;
+            res.statusMessage = code_msg;
+            res.setHeader('Content-Type', contentType);
+            console.log(err.message);
+            res.write(data);
+            res.end();
+        }else {
+            console.log("Lectura completada...\n")
+            console.log("Contenido del fichero:")
+            console.log("Archivo",file,"")
+            //-- console.log(data.toString());
+
+            //-- Generar la respusta en función de las variables
+            //-- code, code_msg y page
+            res.statusCode = code;
+            res.statusMessage = code_msg;
+            res.setHeader('Content-Type', contentType);
+            res.write(data);
+            res.end();
+        }
+    });
+
 });
 console.log("Lectura asíncrona de un fichero");
-
-
-
 server.listen(PUERTO);
-
 console.log("Static file server running at\n  => http://localhost:" 
             + PUERTO + "/\nCTRL + C to shutdown");
