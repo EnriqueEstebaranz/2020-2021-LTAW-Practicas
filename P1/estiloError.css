@@ -6,9 +6,9 @@
 }
 img{
     position: absolute;
-    top: 100px;
-    height: 400px;
-    width: 600;
+    top: 200px;
+    height: 300px;
+    width: 500;
     right: 50%;
     transform: translate(+50%);
 }
@@ -16,7 +16,7 @@ img{
     position: absolute;
     top: 510px;
     height: 50px;
-    width: 600px;
+    width: 500px;
     background-color: yellow;
     font-size: 40px;
     text-align: center;
@@ -27,8 +27,8 @@ img{
 .yoda{
     position: absolute;
     top: 570px;
-    height: 400px;
-    width: 600;
+    height: 300px;
+    width: 500;
     right: 50%;
     transform: translate(+50%);
 }
