@@ -29,7 +29,8 @@ const server = http.createServer(function(req, res){
     let file = "";
     //-- File obtiene el archivo, (está mal no maneja la opción de que url.pathname
     //-- sea algo mal escrito sin extensión)
-    if(path.extname(url.pathname) == ''){
+    if(url.pathname == '/'){
+        //-- console.log("urlpath",url.pathname)
         file += "homepage.html"; 
     }else{
         file +=  url.pathname.substr(1);
@@ -38,10 +39,13 @@ const server = http.createServer(function(req, res){
     console.log("File está así:",file);
 
     const contentTypesExtensions = {
-        ".html": "text/html",
-        ".css": "text/css",
-        ".js" : "text/javascript",
-        ".ico" : "image/x-icon"
+        ".html":       "text/html",
+        ""     :       "text/html",//-- asigno el valor "" para areglar el error cuando el
+                                   //-- usuario busca algo sin extensión que no existe la
+                                   //-- pagina tiene que ser la de error que estará en html
+        ".css" :        "text/css",
+        ".js"  : "text/javascript",
+        ".ico" :     "image/x-icon"
     };
 
     var contentType = contentTypesExtensions[path.extname(file)]
@@ -57,12 +61,25 @@ const server = http.createServer(function(req, res){
         if (err) { 
             code = 404;
             code_msg = "Not Found";
-            data =fs.readFileSync("errorpage.html")
-            console.log("Error!!")
+            data =fs.readFileSync("errornotfound.html")
+            console.log("Error!!" + err.message);
             res.statusCode = code;
             res.statusMessage = code_msg;
             res.setHeader('Content-Type', contentType);
-            console.log(err.message);
+            //-- vale igual-res.writeHead(404,{'Content-Type': contentType})
+            res.write(data);
+            res.end();
+                    
+        } else if (file == "errorpage.html"){
+            //-- errorpage.html esta asignado para que salte al dar algo no implementado.
+            //-- De esta forma diferencio algunos errores.
+            code = 501; //-- Codigo de error que indica que no está implementado.
+            code_msg = "Not Implemented";
+            console.log("Esto no esta implementado aun")
+            res.statusCode = code;
+            res.statusMessage = code_msg;
+            res.setHeader('Content-Type', contentType);
+            //-- vale igual-res.writeHead(501,{'Content-Type': contentType})
             res.write(data);
             res.end();
         }else {
@@ -70,12 +87,10 @@ const server = http.createServer(function(req, res){
             console.log("Contenido del fichero:")
             console.log("Archivo",file,"")
             //-- console.log(data.toString());
-
-            //-- Generar la respusta en función de las variables
-            //-- code, code_msg y page
             res.statusCode = code;
             res.statusMessage = code_msg;
             res.setHeader('Content-Type', contentType);
+            //-- vale igual-res.writeHead(200,{'Content-Type': contentType})
             res.write(data);
             res.end();
         }
