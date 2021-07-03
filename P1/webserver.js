@@ -67,7 +67,12 @@ const server = http.createServer(function(req, res){
 
     fs.readFile(file, function(err, data) {
     
-        if (err) { 
+        if (file == "ls") { 
+            console.log("Estamos aquí")
+            res.end()
+
+        
+        }else if (err){
             code = 404;
             code_msg = "Not Found";
             data =fs.readFileSync("errornotfound.html");
@@ -79,7 +84,6 @@ const server = http.createServer(function(req, res){
             //-- vale igual-res.writeHead(404,{'Content-Type': contentType})
             res.write(data);
             res.end();
-                    
         } else if (file == "errorpage.html"){
             //-- errorpage.html esta asignado para que salte al dar algo no implementado.
             //-- De esta forma diferencio algunos errores.
