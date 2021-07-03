@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tienda [
+    <!-- La tienda contiene uno o más productos-->
+    <!ELEMENT tienda (producto+)>
+    <!ELEMENT producto (#PCDATA)>
+]>
+<tienda>
+    <producto>
+        producto1
+    </producto>
+    <producto>
+        producto2
+    </producto>
+    <producto>
+        producto3
+    </producto>
+</tienda>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tienda [
+    <!ELEMENT tienda (producto*)>
+
+    <!-- El elemento descripción es opcional -->
+    <!ELEMENT producto (nombre, descripcion?, stock)>
+    <!ELEMENT nombre (#PCDATA)>
+    <!ELEMENT descripcion (#PCDATA)>
+    <!ELEMENT stock (#PCDATA)>
+]>
+<tienda>
+    <producto>
+        <nombre>
+            nave
+        </nombre>
+        <descripcion>
+            puede volar a gran velocidad
+        </descripcion>
+        <stock>
+            4
+        </stock>
+    </producto>
+    <producto>
+        <nombre>
+            bmw-x1
+        </nombre>
+        <stock>
+            12
+        </stock>
+    </producto>
+</tienda>

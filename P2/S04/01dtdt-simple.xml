@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Declaración de la gramática -->
+<!DOCTYPE tienda [
+    <!ELEMENT tienda (#PCDATA)>
+]>
+<tienda>
+    Esta es mi tienda
+</tienda>
