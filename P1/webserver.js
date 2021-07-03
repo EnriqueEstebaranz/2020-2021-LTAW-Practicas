@@ -8,7 +8,7 @@ const url = require('url')
 var path = require('path')
 //-- El servidor debe escuchar en el puerto 9000(especificación de 
 //-- la practica).
-const PUERTO = 9200;
+const PUERTO = 9000;
 
 
 console.log("Servidor iniciado:")
