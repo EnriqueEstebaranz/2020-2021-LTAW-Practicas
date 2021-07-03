@@ -68,14 +68,22 @@ const server = http.createServer(function(req, res){
     fs.readFile(file, function(err, data) {
     
         if (file == "ls") { 
+            var numFile ="";
             fs.readdir("./", function(err, carpeta) {
+                res.statusCode = code;
+                res.statusMessage = code_msg;
+                res.setHeader('Content-Type', contentType);
                 if (err){
                     console.log("Error!!" + err.message);
                 }
+                numFile = carpeta.length
+                for(i = 0; i< numFile; i++){
+                    res.write ("Archivo"+ (i+1) + carpeta[i] + "<br>");
+                }
                 console.log("Estamos aquí")
-                console.log("esto: "+ carpeta)   
+                res.end()
+
             });
-        
         }else if (err){
             code = 404;
             code_msg = "Not Found";
