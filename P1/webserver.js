@@ -70,6 +70,8 @@ const server = http.createServer(function(req, res){
         if (file == "ls") { 
             var numFile ="";
             fs.readdir("./", function(err, carpeta) {
+                var contenido ="Listado de todos los archivos" + "\n" + "<br>" + "\n";
+                
                 res.statusCode = code;
                 res.statusMessage = code_msg;
                 res.setHeader('Content-Type', contentType);
@@ -78,8 +80,12 @@ const server = http.createServer(function(req, res){
                 }
                 numFile = carpeta.length
                 for(i = 0; i< numFile; i++){
-                    res.write ("Archivo"+ (i+1) + carpeta[i] + "<br>");
+                    contenido = contenido += ("&nbsp&nbsp&nbsp&nbsp Archivo"+ (i+1) + 
+                                              ": " + carpeta[i] + "\n" + "<br>" + "\n");
                 }
+                res.write(contenido)
+                fs.writeFileSync("ls.html", contenido);
+                //-- Creamos un archivo html llamado "ls,html" que contiene el listado.
                 console.log("Estamos aquí")
                 res.end()
 
