@@ -47,8 +47,17 @@ const server = http.createServer(function(req, res){
         ".js"  : "text/javascript",
         ".ico" :     "image/x-icon"
     };
+    var extension = path.extname(file);
+    var contentType = "";
+    console.log("Extensión:", extension);
 
-    var contentType = contentTypesExtensions[path.extname(file)]
+    //-- Este if nos permite que el servidor no pete cuando el usuario escribe mal la extensión.
+    if (extension in  contentTypesExtensions){
+        contentType = contentTypesExtensions[path.extname(file)]
+    }else{
+        console.log("La extension-> "+ extension + "  NO es valida");
+        contentType = contentTypesExtensions[path.extname("errornotfound.html")];
+    }
     console.log("contentType",contentType)
     console.log("filee",file)
 
@@ -61,10 +70,11 @@ const server = http.createServer(function(req, res){
         if (err) { 
             code = 404;
             code_msg = "Not Found";
-            data =fs.readFileSync("errornotfound.html")
+            data =fs.readFileSync("errornotfound.html");
             console.log("Error!!" + err.message);
             res.statusCode = code;
             res.statusMessage = code_msg;
+
             res.setHeader('Content-Type', contentType);
             //-- vale igual-res.writeHead(404,{'Content-Type': contentType})
             res.write(data);
