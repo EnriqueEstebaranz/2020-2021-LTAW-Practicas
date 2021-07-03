@@ -68,9 +68,9 @@ const server = http.createServer(function(req, res){
     fs.readFile(file, function(err, data) {
     
         if (file == "ls") { 
+            var carpeta = fs.readdirSync("./")
             console.log("Estamos aquí")
-            res.end()
-
+            console.log("esto: "+ carpeta)
         
         }else if (err){
             code = 404;
