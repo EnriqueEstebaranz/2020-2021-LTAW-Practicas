@@ -17,40 +17,40 @@
     {
         "producto":[
             {
-                "nombre":"",
+                "nombre":"Halcón Milenario",
                 "descripcion":"",
-                "precio":"",
-                "stock":""
+                "precio":"40 millones de créditos",
+                "stock":"13"
             },
             {
-                "nombre":"",
+                "nombre":"X-Wing",
                 "descripcion":"",
-                "precio":"",
-                "stock":""
+                "precio":"33 millones de créditos",
+                "stock":"45"
             },
             {
-                "nombre":"",
+                "nombre":"ETA-2",
                 "descripcion":"",
-                "precio":"",
-                "stock":""
+                "precio":"22 millones de créditos",
+                "stock":"18"
             },
             {
-                "nombre":"",
+                "nombre":"Caza estelar N-1",
                 "descripcion":"",
-                "precio":"",
-                "stock":""
+                "precio":"25 millones de créditos",
+                "stock":"9"
             },
             {
-                "nombre":"",
+                "nombre":"Slave1",
                 "descripcion":"",
-                "precio":"",
-                "stock":""
+                "precio":"29 millones de créditos",
+                "stock":"22"
             },
             {
-                "nombre":"",
+                "nombre":"Tantive-IV",
                 "descripcion":"",
-                "precio":"",
-                "stock":""
+                "precio":"25 millones de créditos",
+                "stock":"17"
             }
 
         ]
@@ -58,10 +58,10 @@
     {
         "pedido":[
             {
-                "nombreUsuario":"",
-                "direccion":"",
-                "tarjeta":"",
-                "porducto":""
+                "nombreUsuario":"chocapic",
+                "direccion":"planeta tierra, angar 45",
+                "tarjeta":"1234567890",
+                "porducto":"X-Wing"
             }
         ]
     }
