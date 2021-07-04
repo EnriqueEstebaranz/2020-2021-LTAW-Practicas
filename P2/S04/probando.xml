@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Probando comentarios -->
+<!-- Este es un ejemplo de comentario en una línea -->
+<!-- estes es un comentario 
+     multilinea
+     que ocupa 
+     4 lineas
+-->
+<!-- Ejemplo: Declaracion de la etiqueta raiz -->
+<!DOCTYPE tienda>
+<!-- Ejemplo: Añadir la definición del lenguaje creado, 
+     que está en el fichero tienda.dtd                  -->
+<!-- <!DOCTYPE tienda SYSTEM "tienda.dtd"> -->
+
+<!-- Ejemplo: Etiquetas con cuerpo simple -->
+<!-- <tienda>
+    Este es el texto del cuerpo
+</tienda>-->
+  
+<!-- Ejemplo: Etiquetas con cuerpo compuesto -->
+<tienda>
+    <producto codigo="1">
+      Placa Alhambra II
+    </producto>
+    <producto codigo="2">
+      Placa Icestick
+    </producto>
+</tienda>
