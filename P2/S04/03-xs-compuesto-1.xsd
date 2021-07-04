@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- comienzo del esquema -->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <!-- elemento raiz -->
+    <xs:element name="tienda">
+        <!-- es de tipo complejo porque contiente otros elementos -->
+        <xs:complexType>
+
+        <!-- Elementos en orden -->
+        <!-- en este caso como solo hay 1 os da igual -->
+            <xs:sequence>
+                <!-- prodcuto:tipo simple: cadena -->
+                <!-- puede haber 1 o más productos -->
+                <xs:element name="producto" type = "xs:string" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
