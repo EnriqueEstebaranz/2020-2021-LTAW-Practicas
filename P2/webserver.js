@@ -60,122 +60,121 @@ console.log("usuario",contraseña)
 
 console.log("Servidor iniciado:")
 
-const server = http.createServer(function(req, res){
+//-- SERVIDOR: Bucle principal de atención a clientes
+const server = http.createServer((req, res) => { 
     //-- Petición
     console.log("Petición recibida!");
 
     //-- Analizar el recurso
     //-- Construir el objeto url con la url de la solicitud
     const url = new URL(req.url, 'http://' + req.headers['host']);
-    console.log("Esto es url:",url);
-
-    //-- Valores de la respuesta por defecto
-    let code = 200;
-    let code_msg = "OK";
-
-    let file = "";
-    //-- File obtiene el archivo, (está mal no maneja la opción de que url.pathname
-    //-- sea algo mal escrito sin extensión)
-    if(url.pathname == '/'){
-        //-- console.log("urlpath",url.pathname)
-        file += "homepage.html"; 
-    }else{
-        file +=  url.pathname.substr(1);
-        //-- Le quitamos '/' porque el nombre de nuestro archivo no tiene '/'.
-    }
-    console.log("File está así:",file);
-
-    const contentTypesExtensions = {
-        ".html":       "text/html",
-        ""     :       "text/html",//-- asigno el valor "" para areglar el error cuando el
-                                   //-- usuario busca algo sin extensión que no existe la
-                                   //-- pagina tiene que ser la de error que estará en html
-        ".css" :        "text/css",
-        ".js"  : "text/javascript",
-        ".ico" :     "image/x-icon"
-    };
-    var extension = path.extname(file);
-    var contentType = "";
-    console.log("Extensión:", extension);
-
-    //-- Este if nos permite que el servidor no pete cuando el usuario escribe mal la extensión.
-    if (extension in  contentTypesExtensions){
-        contentType = contentTypesExtensions[path.extname(file)]
-    }else{
-        console.log("La extension-> "+ extension + "  NO es valida");
-        contentType = contentTypesExtensions[path.extname("errornotfound.html")];
-    }
-    console.log("contentType",contentType)
-    console.log("filee",file)
-
-    //-- Cualquier recurso que no sea la página principal
-    //-- genera un error
+    console.log("");
+    console.log("Método: " + req.method);
+    console.log("Recurso: " + req.url);
+    console.log("  Ruta: " + url.pathname);
+    console.log("  Parametros: " + url.searchParams);
 
 
-    fs.readFile(file, function(err, data) {
-    
-        if (file == "ls") { 
-            var numFile ="";
-            fs.readdir("./", function(err, carpeta) {
-                var contenido ="Listado de todos los archivos" + "\n" + "<br>" + "\n";
-                
-                res.statusCode = code;
-                res.statusMessage = code_msg;
-                res.setHeader('Content-Type', contentType);
-                if (err){
-                    console.log("Error!!" + err.message);
+     //-- Leer las cookies
+    const cookie = req.headers.cookie;
+    console.log("Cookie: ", cookie)
+
+    //-- Variables para el mensaje de respuesta
+    let content_type = "text/html";
+    let content = "";
+
+    //-- Leer recurso y eliminar la / inicial
+    let recurso = url.pathname.substr(1);
+    console.log("file:", recurso);
+    switch (recurso) {
+        case '':
+            console.log("Main page");
+            content = HOME;
+            break;
+
+        case 'procesar':
+            //-- Leer los parámetros
+            let nombre = url.searchParams.get('nombre');
+            let apellidos = url.searchParams.get('apellidos');
+            console.log(" Nombre: " + nombre);
+            console.log(" Apellidos: " + apellidos);
+
+            content_type = "text/html";
+            content = RESPUESTA;
+            //-- Reemplazar las palabras claves por su valores
+            //-- en la plantilla HTML
+            content = RESPUESTA.replace("NOMBRE", nombre);
+            content = content.replace("APELLIDOS", apellidos);
+            //-- si el usuario es Chuck Norris se añade HTML extra
+            let html_extra = "";
+            if (nombre=="Chuck" && apellidos=="Norris") {
+                html_extra = "<h2>Chuck Norris no necesita registrarse</h2>";
+            }
+            content = content.replace("HTML_EXTRA", html_extra);
+            break;
+
+        case 'productos':
+            console.log("Peticion de Productos!")
+            content_type = "application/json";
+
+            //-- Leer los parámetros
+            let param1 = myURL.searchParams.get('param1');
+
+            param1 = param1.toUpperCase();
+
+            console.log("  Param: " +  param1);
+
+            let result = [];
+
+            for (let prod of productos) {
+
+                //-- Pasar a mayúsculas
+                prodU = prod.toUpperCase();
+
+                //-- Si el producto comienza por lo indicado en el parametro
+                //-- meter este producto en el array de resultados
+                if (prodU.startsWith(param1)) {
+                    result.push(prod);
                 }
-                numFile = carpeta.length
-                for(i = 0; i< numFile; i++){
-                    contenido = contenido += ("&nbsp&nbsp&nbsp&nbsp Archivo"+ (i+1) + 
-                                              ": " + carpeta[i] + "\n" + "<br>" + "\n");
-                }
-                res.write(contenido)
-                fs.writeFileSync("ls.html", contenido);
-                //-- Creamos un archivo html llamado "ls,html" que contiene el listado.
-                console.log("Estamos aquí")
-                res.end()
 
+            }
+            console.log(result);
+            content = JSON.stringify(result);
+            break;
+
+        case 'cliente.js':
+            //-- Leer fichero javascript
+            console.log("recurso: " + recurso);
+            fs.readFile(recurso, 'utf-8', (err,data) => {
+                if (err) {
+                    console.log("Error: " + err)
+                    return;
+                } else {
+                  res.setHeader('Content-Type', 'application/javascript');
+                  res.write(data);
+                  res.end();
+                }
             });
-        }else if (err){
-            code = 404;
-            code_msg = "Not Found";
-            data =fs.readFileSync("errornotfound.html");
-            console.log("Error!!" + err.message);
-            res.statusCode = code;
-            res.statusMessage = code_msg;
 
-            res.setHeader('Content-Type', contentType);
-            //-- vale igual-res.writeHead(404,{'Content-Type': contentType})
-            res.write(data);
+            return;
+            break;
+
+            //-- Si no es ninguna de las anteriores devolver mensaje de error
+        default:
+            res.setHeader('Content-Type','text/html');
+            res.statusCode = 404;
+            res.write(ERROR);
             res.end();
-        } else if (file == "errorpage.html"){
-            //-- errorpage.html esta asignado para que salte al dar algo no implementado.
-            //-- De esta forma diferencio algunos errores.
-            code = 501; //-- Codigo de error que indica que no está implementado.
-            code_msg = "Not Implemented";
-            console.log("Esto no esta implementado aun")
-            res.statusCode = code;
-            res.statusMessage = code_msg;
-            res.setHeader('Content-Type', contentType);
-            //-- vale igual-res.writeHead(501,{'Content-Type': contentType})
-            res.write(data);
-            res.end();
-        }else {
-            console.log("Lectura completada...\n")
-            console.log("Contenido del fichero:")
-            console.log("Archivo",file,"")
-            //-- console.log(data.toString());
-            res.statusCode = code;
-            res.statusMessage = code_msg;
-            res.setHeader('Content-Type', contentType);
-            //-- vale igual-res.writeHead(200,{'Content-Type': contentType})
-            res.write(data);
-            res.end();
-        }
+            return;
+    }
+
+
+        //-- Generar respuesta
+        res.setHeader('Content-Type', content_type);
+        res.write(content);
+        res.end()
     });
 
-});
 console.log("Lectura asíncrona de un fichero");
 server.listen(PUERTO);
 console.log("Static file server running at\n  => http://localhost:" 
