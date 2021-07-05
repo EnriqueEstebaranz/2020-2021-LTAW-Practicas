@@ -1,0 +1,44 @@
+.divform{
+    position: absolute;
+    top: 220px;
+    background-color: yellow;
+    border: yellow 2px solid;
+    color: blanchedalmond;
+    height: 400PX;
+    width: 600px;
+    right: 50%;
+    transform: translate(+50%);
+}
+.formulario{
+    font-size: 30px;
+    text-align: center;
+    color: black;
+}
+#nombre{
+
+    top: 100px;
+    position: absolute;
+    right: 50%;
+    transform: translate(+50%);
+}
+#contraseña{
+    width: fit-content;
+    top: 160px;
+    position: absolute;
+    right: 50%;
+    transform: translate(+50%);
+}
+.boton{
+    position: absolute;
+    top:220px;
+    right: 50%;
+    transform: translate(+50%);
+}
+.error{
+    position: absolute;
+    top:250px;
+    font-size: 30px;
+    text-align: center;
+    color: black;
+
+}
