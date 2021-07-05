@@ -58,6 +58,20 @@ for (i = 0; i < usuario.length; i++){
 console.log("usuario",nombre)
 console.log("usuario",contraseña)
 
+let nave = [];
+let precio = [];
+let stock = [];
+let producto = tienda[1]["producto"];
+console.log("productos:",producto)
+for (i = 0; i < producto.length; i++){
+    nave.push(producto[i]["nombre"]);
+    precio.push(producto[i]["precio"]);
+    stock.push(producto[i]["stock"]);
+};
+console.log("Producto",nave)
+console.log("Precio",precio)
+console.log("Stock",stock)
+
 console.log("Servidor iniciado:")
 
 //-- SERVIDOR: Bucle principal de atención a clientes
