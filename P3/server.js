@@ -3,7 +3,6 @@ const socket = require('socket.io');
 const http = require('http');
 const express = require('express');
 const colors = require('colors');
-
 const PUERTO = 8081;
 
 //-- Crear una nueva aplciacion web
@@ -17,6 +16,9 @@ const io = socket(server);
 
 //-- Guardamos el numero de usuarios que estan conectados.
 let contador = 0;
+
+let todo = "";
+
 //-------- PUNTOS DE ENTRADA DE LA APLICACION WEB
 //-- Definir el punto de entrada principal de mi aplicación web
 app.get('/', (req, res) => {
@@ -46,8 +48,20 @@ io.on('connect', (socket) => {
 
   //-- Mensaje recibido: Reenviarlo a todos los clientes conectados
   socket.on("message", (msg)=> {
+    const myset = new Set();
     const mensajedividido = msg.split(" ");
+    const nick = msg.split(":")[0];
     const contenido = mensajedividido[1];
+    
+    if (todo.includes(nick)){
+      console.log("aqui",todo)
+      
+    }else{
+      todo += nick + " "
+      console.log("aqui2",todo)
+    }
+    console.log("aqui3",todo)
+
     console.log("Mensaje Recibido!: " + msg.blue);
     if(contenido.charAt(0)=="/"){
       if(contenido == "/help"){
@@ -56,8 +70,8 @@ io.on('connect', (socket) => {
                     "<u><n>/date<n/></u><br>")
         console.log("estamos en help", msg);
       }else if(contenido == "/list"){
-        console.log("estamos en list", msg);
-        socket.send("Numero de usuarios conectados: " + contador);
+        console.log("estamos en list",  todo);
+        socket.send("Numero de usuarios conectados: " + todo);
       }else if(contenido == "/hello"){
         console.log("estamos en hello", msg);
         socket.send("Hola");
