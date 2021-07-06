@@ -15,6 +15,8 @@ const server = http.Server(app);
 //-- Crear el servidor de websockets, asociado al servidor http
 const io = socket(server);
 
+//-- Guardamos el numero de usuarios que estan conectados.
+let contador = 0;
 //-------- PUNTOS DE ENTRADA DE LA APLICACION WEB
 //-- Definir el punto de entrada principal de mi aplicación web
 app.get('/', (req, res) => {
@@ -32,12 +34,13 @@ app.use(express.static('public'));
 //------------------- GESTION SOCKETS IO
 //-- Evento: Nueva conexion recibida
 io.on('connect', (socket) => {
-
+  contador += 1;
   socket.send("Bienvenido a este magnifico chat");
   console.log('** NUEVA CONEXIÓN **'.yellow);
   io.send("Se ha metido un nuevo usuario")
   //-- Evento de desconexión
   socket.on('disconnect', function(){
+    contador -= 1;
     console.log('** CONEXIÓN TERMINADA **'.yellow);
   });  
 
@@ -52,6 +55,7 @@ io.on('connect', (socket) => {
         console.log("estamos en help", msg);
       }else if(msg == "/list"){
         console.log("estamos en list", msg);
+        socket.send("Numero de usuarios conectados: " + contador);
       }else if(msg == "/hello"){
         console.log("estamos en hello", msg);
         socket.send("Hola");
