@@ -9,6 +9,7 @@
     right: 50%;
     transform: translate(+50%);
     background-color: white;
+    color: black;
 }
 body{
     background-color: black;
