@@ -32,9 +32,10 @@ app.use(express.static('public'));
 //------------------- GESTION SOCKETS IO
 //-- Evento: Nueva conexion recibida
 io.on('connect', (socket) => {
-  
-  console.log('** NUEVA CONEXIÓN **'.yellow);
 
+  socket.send("Bienvenido a este magnifico chat");
+  console.log('** NUEVA CONEXIÓN **'.yellow);
+  io.send("Se ha metido un nuevo usuario")
   //-- Evento de desconexión
   socket.on('disconnect', function(){
     console.log('** CONEXIÓN TERMINADA **'.yellow);
@@ -60,7 +61,7 @@ io.on('connect', (socket) => {
         socket.send(msg);
       }
     }else{
-      io.send(msg+"hola");
+      io.send(msg);
     }
 
     //-- Reenviarlo a todos los clientes conectados

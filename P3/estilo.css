@@ -1,0 +1,24 @@
+#display{
+    overflow-y: scroll;
+    padding: 10px;
+    top: 100px;
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    border: solid rgb(218, 218, 56);
+    right: 50%;
+    transform: translate(+50%);
+    background-color: white;
+}
+body{
+    background-color: black;
+    color: rgb(218, 218, 56);
+}
+#msg_entry{
+    position: absolute;
+    width: 720px;
+    top:850px;
+    right: 50%;
+    transform: translate(+50%);
+    border: solid rgb(218, 218, 56);
+}
