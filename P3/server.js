@@ -44,11 +44,27 @@ io.on('connect', (socket) => {
   socket.on("message", (msg)=> {
     console.log("Mensaje Recibido!: " + msg.blue);
     if(msg.charAt(0)=="/"){
-      console.log("estamos aqui:" +msg.charAt(0) )
+      if(msg == "/help"){
+        socket.send("Comandos soportados:<br>" + "<u><n>/help<n/></u><br>" +
+                    "<u><n>/list<n/></u><br>" + "<u><n>/hello<n/></u><br>" +
+                    "<u><n>/date<n/></u><br>")
+        console.log("estamos en help", msg);
+      }else if(msg == "/list"){
+        console.log("estamos en list", msg);
+      }else if(msg == "/hello"){
+        console.log("estamos en hello", msg);
+        socket.send("Hola");
+      }else if(msg == "/date"){
+        console.log("estamos en date", msg);
+      }else{
+        socket.send(msg);
+      }
+    }else{
+      io.send(msg+"hola");
     }
 
     //-- Reenviarlo a todos los clientes conectados
-    io.send(msg+"hola");
+    
   });
 
 });
