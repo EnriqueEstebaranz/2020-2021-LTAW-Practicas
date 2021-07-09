@@ -7,24 +7,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="estilo.css">
 
-  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/EnriqueEstebaranz/2020-2021-LTAW-Practicas/main/P1/imagenes/halconMilenario.jpg" />
+  <link rel="icon" type="image/png" href="https://github.com/EnriqueEstebaranz/2020-2021-LTAW-Practicas/blob/main/P1/imagenes/ICONOCHAT.png?raw=true" />
 
   <!-- Cargar la biblioteca Socket.IO. Nos la debe entregar el servidor -->
   <script src="/socket.io/socket.io.js"></script>
 
   <!-- Cliente que usa los Sockets.io-->
   <script src="client.js" defer></script>
+  <script src="cltest.js" defer></script>
 </head>
 
 <body>
-  <h2>Chat</h2>
+  <!-- para que suene cada vez que recibe un mensaje -->
+  <audio id="notificacion"><source src="sonido.mp3"> </audio>
+  <p id="titulo">Chat</p>
   <p class = "chat" id="display"></p>
   <input type="text" placeholder="Escribe aquí los mensajes..." autocomplete="off" id="msg_entry">
   <div id= "divusuario">
     <h3>Introduce el nombre:</h3>
+    Nombre predeterminado: Desconocido
     <h3 id="cambio"></h3>
-
     <input type="text" placeholder="Escribe aquí el nombre..." autocomplete="off" id="nick">
+    Comandos: <br>
+    &nbsp&nbsp&nbsp/help<br>
+    &nbsp&nbsp&nbsp/list<br>
+    &nbsp&nbsp&nbsp/hello<br>
+    &nbsp&nbsp&nbsp/date<br>
+    &nbsp&nbsp&nbsp/usuarios<br>
   </div>
 </body>
 </html>

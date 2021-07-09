@@ -3,16 +3,20 @@ const display = document.getElementById("display");
 const msg_entry = document.getElementById("msg_entry");
 const usuario = document.getElementById("nick");
 const cambio = document.getElementById("cambio");
+const usuarioescrito = document.getElementById("escrito");
+const cambiotest = document.getElementById("test");
+const notificacion = document.getElementById("notificacion");
+
 //-- Este sera el identificador del ususario por defecto 
 let nombreUsuario = "Desconocido";
-
+const socket = io();
 
 //-- Crear un websocket. Se establece la conexión con el servidor
-const socket = io();
 
 
 socket.on("message", (msg)=>{
   display.innerHTML +=  '<p>' + msg + '</p>';
+  
 });
 
 
@@ -20,7 +24,7 @@ socket.on("message", (msg)=>{
 msg_entry.onchange = () => {
   if (msg_entry.value)
     socket.send(nombreUsuario + ": " + msg_entry.value);
-  
+    notificacion.play();
   //-- Borrar el mensaje actual
   msg_entry.value = "";
 }
