@@ -3,9 +3,9 @@ const http = require('http');
 //-- utilizamos el módulo fs
 const fs = require('fs');
 //-- Utilizamos el modulo url
-const url = require('url')
+const url = require('url');
 //-- Importamos el modulo path con el objetivo de usar la funcion 
-var path = require('path')
+var path = require('path');
 //-- El servidor debe escuchar en el puerto 9000(especificación de 
 //-- la practica).
 const PUERTO = 9000;
@@ -20,7 +20,7 @@ const server = http.createServer(function(req, res){
     //-- Analizar el recurso
     //-- Construir el objeto url con la url de la solicitud
     const url = new URL(req.url, 'http://' + req.headers['host']);
-    console.log("Esto es url:",url);
+    //-- console.log("Esto es url:",url);
 
     //-- Valores de la respuesta por defecto
     let code = 200;
@@ -36,7 +36,7 @@ const server = http.createServer(function(req, res){
         file +=  url.pathname.substr(1);
         //-- Le quitamos '/' porque el nombre de nuestro archivo no tiene '/'.
     }
-    console.log("File está así:",file);
+    //-- console.log("File está así:",file);
 
     const contentTypesExtensions = {
         ".html":       "text/html",
